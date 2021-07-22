@@ -8,7 +8,7 @@ def MyTransform (glueContext, dfc) -> DynamicFrameCollection:
     split_col = split(sourcedata["quarter"], " ")
     sourcedata = sourcedata.withColumn("quarter", split_col.getItem(0))
     sourcedata = sourcedata.withColumn("profit", col("revenue")*col("gross margin"))
-    sourcedata = sourcedata.withColumn("current date", current_date())
+    sourcedata = sourcedata.withColumn("update_date", current_date())
     
     # Convert back to Glue Dynamic Frame
     dyf = DynamicFrame.fromDF(sourcedata, glueContext, "datasource")
